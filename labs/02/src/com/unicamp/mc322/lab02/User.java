@@ -59,7 +59,7 @@ public class User {
     // transfer playlist to other user
     public void transferPlaylist(User user, String namePlaylist) {
         int idxPlaylist = this.findPlaylist(namePlaylist);
-        User.addPlaylist(this.playlists[idxPlaylist]);
+        user.addPlaylist(this.playlists[idxPlaylist]);
         this.removePlaylist(namePlaylist);
     }
 }
