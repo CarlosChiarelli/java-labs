@@ -10,13 +10,22 @@ public class Playlist {
     private int size = 0; // amount of songs
     private Song songs[] = new Song[MAX_MUSICS];
 
+    public Playlist(String name, String style) {
+        this.name = name;
+        this.style = style;
+    }
+
     // get name
     public String getName() {
         return (this.name);
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     // method add music (order in final)
-    public void addMusic(Song music) {
+    public void addSong(Song music) {
         this.songs[this.size++] = music;
         this.sort();
     }
@@ -34,7 +43,7 @@ public class Playlist {
     // method return music with shorter duration
     public Song getShorterDuration() {
         Song songShorter = this.songs[0];
-        for (int i = 0; i < this.size - 1; i++)
+        for (int i = 0; i < this.size; i++)
             if (songShorter.getDuration() > this.songs[i].getDuration())
                 songShorter = this.songs[i];
         return (songShorter);
@@ -43,7 +52,7 @@ public class Playlist {
     // method return music with longer duration
     public Song getLongerDuration() {
         Song songLonger = this.songs[0];
-        for (int i = 0; i < this.size - 1; i++)
+        for (int i = 0; i < this.size; i++)
             if (songLonger.getDuration() < this.songs[i].getDuration())
                 songLonger = this.songs[i];
         return (songLonger);
@@ -52,7 +61,7 @@ public class Playlist {
     // method return musics's mean duration
     public float getMeanDuration() {
         float sum = 0;
-        for (int i = 0; i < this.size - 1; i++)
+        for (int i = 0; i < this.size; i++)
             sum += this.songs[i].getDuration();
         return (sum / this.size);
     }
@@ -60,7 +69,7 @@ public class Playlist {
     // method return musics's total duration
     public float getTotalDuration() {
         float sum = 0;
-        for (int i = 0; i < this.size - 1; i++)
+        for (int i = 0; i < this.size; i++)
             sum += this.songs[i].getDuration();
         return (sum);
     }
@@ -70,7 +79,7 @@ public class Playlist {
         String popularArtist = this.songs[0].getArtist();
         int countMusic = 1;
         int aux = 1;
-        for (int i = 0; i < this.size - 1; i++) {
+        for (int i = 0; i < this.size; i++) {
             aux = this.countArtist(this.songs[i].getArtist());
             if (aux > countMusic) {
                 countMusic = aux;
@@ -142,5 +151,18 @@ public class Playlist {
             if (this.songs[i].getName() == name)
                 return (i);
         return (-1);
+    }
+
+    // show user's musics (maxMusics subscribe)
+    public void userShowMusics(int maxMusics) {
+        maxMusics = (maxMusics < this.size) ? maxMusics : this.size;
+
+        System.out.printf("%s\n", this.getName());
+        System.out.printf("\tNumber of Songs: %d\n\tSongs:\n", maxMusics);
+
+        for (int i = 0; i < maxMusics; i++) {
+            // showMusic
+            this.songs[i].showMusic();
+        }
     }
 }

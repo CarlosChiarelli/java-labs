@@ -31,12 +31,16 @@ public class User {
         return (this.sub ? 100 : 10);
     }
 
+    public void setSubscribe(boolean sub) {
+        this.sub = sub;
+    }
+
     // add playlist
     public void addPlaylist(Playlist playlist) {
         if (this.getMaxPlaylists() > this.sizePlaylists) {
             this.playlists[this.sizePlaylists++] = playlist;
         } else {
-            System.out.print("You can't add playlist!");
+            System.out.print("\nYou can't add playlist!\n");
         }
     }
 
@@ -61,5 +65,31 @@ public class User {
         int idxPlaylist = this.findPlaylist(namePlaylist);
         user.addPlaylist(this.playlists[idxPlaylist]);
         this.removePlaylist(namePlaylist);
+    }
+
+    // show information
+    public void showInformation() {
+        System.out.printf("\n\nName: %s\n", this.name);
+        System.out.printf("Cpf: %s\n", this.cpf);
+        System.out.printf("Birth date: %s\n", this.birthDate);
+        System.out.printf("Genre: %s\n", this.genre);
+        System.out.printf("Subscribe: %b\n\n", this.sub);
+    }
+
+    // show playlist
+    public void showPlaylists() {
+        int maxMusics = this.getMaxMusics();
+        int maxPlaylist = this.getMaxPlaylists();
+        maxPlaylist = (maxPlaylist < this.sizePlaylists) ? maxPlaylist : this.sizePlaylists;
+
+        System.out.printf("\n\nUser: %s\n", this.name);
+        System.out.printf("Number of Playlists: %d\n", maxPlaylist);
+
+        for (int i = 0; i < maxPlaylist; i++) {
+            System.out.printf("Playlist %d: ", (i + 1));
+            // showPlaylist
+            this.playlists[i].userShowMusics(maxMusics);
+        }
+
     }
 }

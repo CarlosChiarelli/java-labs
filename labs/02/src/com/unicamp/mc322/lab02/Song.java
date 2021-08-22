@@ -46,4 +46,8 @@ public class Song {
     public void setDuration(int duration) {
         this.duration = duration;
     }
+
+    public void showMusic() {
+        System.out.printf("\t- %s - %s;\n", this.name, this.artist);
+    }
 }
