@@ -24,7 +24,7 @@ public class Booking {
 	}
 
 	public void cancelBooking(User user, Hotel hotel, int roomNumber) {
-		if (hotel.roomAvailable(roomNumber)) {
+		if (!hotel.roomAvailable(roomNumber)) {
 			System.err.println("O quarto nao esta ocupado");
 			return;
 		} else {
@@ -46,11 +46,14 @@ public class Booking {
 		Hotel hotel1 = new Hotel("Praia Tropical", "Rua Itajuba, 201 - Florianopolis, SC", "3225-8997", 100, 900);
 		Hotel hotel2 = new Hotel("Campos Florestal", "Rua Monteiro, 456 - Goiania, GO", "3654-8974", 50, 2000);
 
+		System.out.println(hotel1);
+
 		User user1 = new User("Roberci Silva", "784245698-21", new Date(12 / 04 / 1996), UserGender.MALE, 1000, true);
 		User user2 = new User("Marcela Domingues", "269784061-45", new Date(22 / 07 / 1998), UserGender.FEMALE, 2000,
 				false);
 
 		agency.createBooking(user1, hotel1, 2, 1);
+		System.out.println(hotel1);
 		agency.createBooking(user2, hotel2, 13, 4);
 
 		agency.createBooking(user1, hotel1, 87, 1);
@@ -60,5 +63,6 @@ public class Booking {
 		agency.cancelBooking(user1, hotel2, 99);
 
 		agency.createBooking(user2, hotel2, 87, 1);
+
 	}
 }
