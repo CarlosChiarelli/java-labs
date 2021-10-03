@@ -19,7 +19,9 @@ public class Main {
 		Agenda agenda = new Agenda();
 
 		// Lembrete Comum
-		agenda.adicionarLembrete(new Lembrete("Lembrete Comum"));
+		Lembrete lembreteComum = new Lembrete("Lembrete Comum");
+		// agenda.adicionarLembrete(new Lembrete("Lembrete Comum"));
+		agenda.adicionarLembrete(lembreteComum);
 
 		// Lembrete dia da semana
 		agenda.adicionarLembrete(new LembreteDiaDaSemana("Lembrete Semanal", DayOfWeek.SATURDAY));
@@ -47,6 +49,11 @@ public class Main {
 		System.out.println("### Intervalo ###");
 		agenda.mostrarLembretesAtivos(new GregorianCalendar(2019, Calendar.APRIL, 2).toZonedDateTime(),
 				new GregorianCalendar(2019, Calendar.APRIL, 24).toZonedDateTime());
+
+		// removendo lembre especifico
+		agenda.removerLembrete(lembreteComum);
+		System.out.println("\nTeste lembrete removido.");
+		agenda.mostrarLembretesAtivos(new GregorianCalendar(2019, Calendar.MARCH, 2).toZonedDateTime());
 
 	}
 }
